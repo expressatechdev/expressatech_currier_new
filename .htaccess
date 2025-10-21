@@ -1,0 +1,29 @@
+# EXPRESSATECH CARGO - Configuración Apache
+RewriteEngine On
+
+# Mostrar errores PHP (solo para desarrollo)
+php_flag display_errors on
+php_value error_reporting E_ALL
+
+# Configuración de sesiones
+php_value session.cookie_httponly 1
+php_value session.use_strict_mode 1
+
+# Tamaño máximo de archivo
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+
+# Proteger archivos sensibles
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Prevenir listado de directorios
+Options -Indexes
+
+# Redirigir errores 404 al index
+ErrorDocument 404 /index.php
+
+# Configuración de charset
+AddDefaultCharset UTF-8
